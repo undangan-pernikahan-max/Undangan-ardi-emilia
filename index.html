@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Ardi & Emilia</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        earth: {
+                            50: '#fdfbf7',
+                            100: '#f7f2ea',
+                            200: '#ece0d1',
+                            300: '#dbc1ac',
+                            400: '#967259',
+                            500: '#634832',
+                            600: '#38220f',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        cursive: ['Great Vibes', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        .bg-pattern {
+            background-color: #f7f2ea;
+            background-image: radial-gradient(#967259 0.5px, transparent 0.5px), radial-gradient(#967259 0.5px, #f7f2ea 0.5px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            background-opacity: 0.1;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(219, 193, 172, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-earth-100 text-earth-600 font-sans antialiased selection:bg-earth-300 selection:text-earth-600">
+
+    <!-- Audio Player (A Thousand Years Piano Cover) -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-piano-114138.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Toggle Floating Button -->
+    <button id="music-btn" onclick="toggleMusic()" class="fixed bottom-5 right-5 z-50 w-12 h-12 rounded-full bg-earth-500 text-earth-50 shadow-lg flex items-center justify-center hover:bg-earth-600 transition duration-300 hidden">
+        <i id="music-icon" class="fas font-solid fa-music animate-spin"></i>
+    </button>
+
+    <!-- Custom Toast Message -->
+    <div id="toast" class="fixed top-5 right-5 z-50 bg-earth-600 text-earth-50 px-4 py-3 rounded-lg shadow-xl text-sm transition-all duration-300 opacity-0 pointer-events-none transform translate-y-[-10px]">
+        Teks berhasil disalin!
+    </div>
+
+    <!-- MAIN WRAPPER CONTAINER FOR MOBILE APP FEEL ON DESKTOP -->
+    <div class="max-w-md mx-auto bg-earth-50 min-h-screen shadow-2xl relative overflow-hidden border-x border-earth-200">
+
+        <!-- ================= HALAMAN 1: COVER / PEMBUKAAN ================= -->
+        <section id="cover" class="fixed inset-0 z-40 max-w-md mx-auto bg-earth-100 flex flex-col justify-between items-center text-center p-8 transition-transform duration-1000 ease-in-out">
+            <!-- Decorative Top -->
+            <div class="pt-8" data-aos="fade-down">
+                <p class="uppercase tracking-[0.3em] text-xs font-medium text-earth-400">The Wedding Of</p>
+            </div>
+
+            <!-- Couple Names & Date -->
+            <div class="my-auto" data-aos="zoom-in" data-aos-delay="200">
+                <h1 class="font-serif text-4xl sm:text-5xl font-bold text-earth-500 leading-tight">Ardi</h1>
+                <span class="font-cursive text-5xl text-earth-400 my-2 block">&</span>
+                <h1 class="font-serif text-4xl sm:text-5xl font-bold text-earth-500 leading-tight">Emilia, A.Md</h1>
+                
+                <div class="w-16 h-[1px] bg-earth-300 mx-auto my-6"></div>
+                <p class="text-sm tracking-wider text-earth-400 font-serif italic">Rabu, 25 November 2026</p>
+            </div>
+
+            <!-- Open Button -->
+            <div class="pb-10 w-full" data-aos="fade-up" data-aos-delay="400">
+                <p class="text-xs text-earth-400 mb-3">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+                <button onclick="openInvitation()" class="w-full py-3.5 px-6 rounded-full bg-earth-500 text-earth-50 font-medium tracking-wide shadow-md hover:bg-earth-600 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2">
+                    <i class="fas fa-envelope-open"></i>
+                    Buka Undangan
+                </button>
+            </div>
+        </section>
+
+        <!-- MAIN CONTENT (REVEALED ON OPEN) -->
+        <main id="main-content" class="opacity-0 transition-opacity duration-700">
+
+            <!-- HERO BANNER -->
+            <section class="h-screen bg-earth-200/40 flex flex-col justify-center items-center text-center px-6 relative border-b border-earth-200">
+                <div class="space-y-4" data-aos="fade-up">
+                    <span class="text-xs uppercase tracking-[0.4em] text-earth-400 font-semibold">Undangan Pernikahan</span>
+                    <h2 class="font-serif text-4xl text-earth-600 font-bold">Ardi & Emilia</h2>
+                    <p class="text-sm font-serif italic text-earth-400">25 & 26 November 2026</p>
+                </div>
+                <div class="absolute bottom-8 animate-bounce text-earth-400">
+                    <i class="fas fa-chevron-down text-lg"></i>
+                </div>
+            </section>
+
+            <!-- ================= HALAMAN 2: ISLAMI & DETAIL ACARA ================= -->
+            <section class="py-16 px-6 text-center border-b border-earth-200 bg-earth-50">
+                <!-- Kalimat Islami -->
+                <div data-aos="fade-up" class="mb-12">
+                    <div class="text-earth-400 mb-4">
+                        <i class="fas fa-quran text-2xl"></i>
+                    </div>
+                    <p class="font-serif text-xs leading-relaxed italic text-earth-500 mb-4 px-2">
+                        "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
+                    </p>
+                    <span class="text-xs font-bold text-earth-400 tracking-wider">QS. AR-RUM: 21</span>
+                </div>
+
+                <div class="w-24 h-[1px] bg-earth-300 mx-auto my-12"></div>
+
+                <!-- Pasangan Pengantin -->
+                <div class="space-y-8 mb-14" data-aos="fade-up">
+                    <div class="glass-card p-6 rounded-2xl shadow-sm">
+                        <h3 class="font-serif text-2xl font-bold text-earth-600">Ardi Karnedi</h3>
+                        <p class="text-xs text-earth-400 mt-2">Putra dari Bapak Karnedi & Ibu</p>
+                    </div>
+
+                    <div class="font-cursive text-4xl text-earth-400">&</div>
+
+                    <div class="glass-card p-6 rounded-2xl shadow-sm">
+                        <h3 class="font-serif text-2xl font-bold text-earth-600">Emilia, A.Md</h3>
+                        <p class="text-xs text-earth-400 mt-2">Putri dari Bapak & Ibu</p>
+                    </div>
+                </div>
+
+                <!-- Detail Acara -->
+                <h3 class="font-serif text-2xl font-bold text-earth-600 mb-8" data-aos="fade-up">Rangkaian Acara</h3>
+
+                <div class="space-y-6">
+                    <!-- Akad Nikah -->
+                    <div class="glass-card p-6 rounded-2xl text-left border-l-4 border-l-earth-400 shadow-sm" data-aos="fade-right">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-full bg-earth-200 flex items-center justify-center text-earth-500">
+                                <i class="fas fa-ring"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-lg text-earth-600">Akad Nikah</h4>
+                                <p class="text-xs text-earth-400">Rabu, 25 November 2026</p>
+                            </div>
+                        </div>
+                        <div class="text-xs space-y-1 text-earth-500 pl-13">
+                            <p class="flex items-center gap-2"><i class="far fa-clock text-earth-400"></i> Pukul 09.00 WIB - Selesai</p>
+                        </div>
+                    </div>
+
+                    <!-- Resepsi -->
+                    <div class="glass-card p-6 rounded-2xl text-left border-l-4 border-l-earth-500 shadow-sm" data-aos="fade-left">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-10 h-10 rounded-full bg-earth-200 flex items-center justify-center text-earth-500">
+                                <i class="fas fa-glass-cheers"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-serif font-bold text-lg text-earth-600">Resepsi Pernikahan</h4>
+                                <p class="text-xs text-earth-400">Kamis, 26 November 2026</p>
+                            </div>
+                        </div>
+                        <div class="text-xs space-y-1 text-earth-500 pl-13">
+                            <p class="flex items-center gap-2"><i class="far fa-clock text-earth-400"></i> Pukul 09.00 WIB s/d Selesai</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ================= HALAMAN 3: GOOGLE MAPS & LOKASI ================= -->
+            <section class="py-16 px-6 text-center border-b border-earth-200 bg-earth-100">
+                <div data-aos="fade-up">
+                    <div class="w-12 h-12 rounded-full bg-earth-200 text-earth-500 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-map-marker-alt text-xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-earth-600 mb-2">Lokasi Acara</h3>
+                    <p class="text-xs font-semibold text-earth-500 mb-1">Gedung Ismet</p>
+                    <p class="text-xs text-earth-400 leading-relaxed max-w-xs mx-auto mb-6">
+                        Desa Ulak Paceh Jaya, Kecamatan Lawang Wetan, Kabupaten Musi Banyuasin
+                    </p>
+                </div>
+
+                <!-- Google Maps Embed -->
+                <div class="rounded-2xl overflow-hidden shadow-md border border-earth-300 mb-6 h-64" data-aos="zoom-in">
+                    <iframe 
+                        class="w-full h-full border-0"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15934.398327170562!2d103.8833!3d-2.8833!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b2e753cd7fd39%3A0x4039180b1820b70!2sUlak%20Paceh%20Jaya%2C%20Lawang%20Wetan%2C%20Musi%20Banyuasin%20Regency%2C%20South%20Sumatra!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+
+                <a href="https://maps.google.com/?q=Gedung+Ismet+Desa+Ulak+Paceh+Jaya+Kecamatan+Lawang+Wetan+Kabupaten+Musi+Banyuasin" target="_blank" rel="noopener noreferrer" 
+                   class="inline-flex items-center gap-2 py-3 px-6 rounded-full bg-earth-500 text-earth-50 text-xs font-medium shadow-md hover:bg-earth-600 transition duration-300" data-aos="fade-up">
+                    <i class="fas fa-location-arrow"></i> Buka Petunjuk Arah
+                </a>
+            </section>
+
+            <!-- ================= HALAMAN 4: KADO DIGITAL / NOMOR REKENING ================= -->
+            <section class="py-16 px-6 text-center border-b border-earth-200 bg-earth-50">
+                <div data-aos="fade-up" class="mb-8">
+                    <div class="w-12 h-12 rounded-full bg-earth-200 text-earth-500 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-gift text-xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-earth-600 mb-2">Tanda Kasih</h3>
+                    <p class="text-xs text-earth-400 max-w-xs mx-auto">
+                        Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika ingin memberi hadiah, dapat melalui:
+                    </p>
+                </div>
+
+                <!-- Card Rekening BRI / DANA -->
+                <div class="glass-card p-6 rounded-2xl shadow-sm text-left relative overflow-hidden" data-aos="flip-left">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="font-bold text-lg text-earth-600">DANA / BANK BRI</span>
+                        <i class="fas fa-wallet text-2xl text-earth-400"></i>
+                    </div>
+                    
+                    <p class="text-xs text-earth-400 mb-1">Nomor Rekening / E-Wallet:</p>
+                    <p id="rek-num" class="font-mono font-bold text-xl text-earth-600 tracking-wider mb-3">0852-1623-9267</p>
+                    
+                    <p class="text-xs text-earth-400">Atas Nama:</p>
+                    <p class="font-semibold text-earth-600 text-sm">Emilia</p>
+
+                    <button onclick="copyToClipboard('085216239267')" class="mt-5 w-full py-2.5 rounded-xl border border-earth-400 text-earth-600 text-xs font-medium hover:bg-earth-200/50 transition flex items-center justify-center gap-2">
+                        <i class="far fa-copy"></i> Salin Nomor Rekening
+                    </button>
+                </div>
+            </section>
+
+            <!-- ================= HALAMAN 6: UCAPAN & TERIMA KASIH ================= -->
+            <section class="py-16 px-6 bg-earth-100">
+                <div data-aos="fade-up" class="text-center mb-8">
+                    <div class="w-12 h-12 rounded-full bg-earth-200 text-earth-500 flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-comments text-xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-earth-600 mb-2">Ucapan & Doa</h3>
+                    <p class="text-xs text-earth-400">Berikan ucapan manis dan doa terbaik untuk kedua mempelai</p>
+                </div>
+
+                <!-- Form Ucapan -->
+                <form id="wishes-form" class="glass-card p-5 rounded-2xl shadow-sm mb-8 space-y-4" data-aos="fade-up" onsubmit="addWish(event)">
+                    <div>
+                        <label class="block text-xs font-medium text-earth-500 mb-1">Nama Tamu</label>
+                        <input type="text" id="wish-name" required placeholder="Masukkan nama Anda" class="w-full px-4 py-2.5 rounded-xl border border-earth-300 text-xs focus:outline-none focus:ring-2 focus:ring-earth-400 bg-earth-50/50">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-earth-500 mb-1">Pesan / Doa</label>
+                        <textarea id="wish-message" rows="3" required placeholder="Tulis ucapan selamat & doa..." class="w-full px-4 py-2.5 rounded-xl border border-earth-300 text-xs focus:outline-none focus:ring-2 focus:ring-earth-400 bg-earth-50/50"></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-3 rounded-xl bg-earth-500 text-earth-50 text-xs font-medium hover:bg-earth-600 transition shadow-sm">
+                        Kirim Ucapan
+                    </button>
+                </form>
+
+                <!-- Daftar Ucapan -->
+                <div id="wishes-container" class="space-y-3 max-h-80 overflow-y-auto pr-1" data-aos="fade-up">
+                    <!-- Initial Wish Samples -->
+                    <div class="bg-earth-50 p-4 rounded-xl border border-earth-200">
+                        <h4 class="font-bold text-xs text-earth-600">Rian & Family</h4>
+                        <p class="text-xs text-earth-500 mt-1">Selamat untuk Ardi dan Emilia! Semoga menjadi keluarga yang sakinah, mawaddah, warahmah. Aamiin.</p>
+                        <span class="text-[10px] text-earth-400 mt-2 block">Baru saja</span>
+                    </div>
+                </div>
+
+                <!-- Ucapan Terima Kasih -->
+                <div class="text-center mt-16 pt-8 border-t border-earth-200" data-aos="zoom-in">
+                    <p class="text-xs text-earth-400 mb-3">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
+                    <p class="text-xs font-bold text-earth-500 tracking-wider uppercase mb-6">KAMI YANG BERBAHAGIA</p>
+                    <h3 class="font-serif text-3xl font-bold text-earth-600">Ardi & Emilia</h3>
+                </div>
+            </section>
+
+            <!-- FOOTER -->
+            <footer class="py-6 bg-earth-600 text-earth-200 text-center text-[11px]">
+                <p>© 2026 Ardi & Emilia Wedding Invitation</p>
+            </footer>
+
+        </main>
+    </div>
+
+    <script>
+        // Initialize AOS animation
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        const bgMusic = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        const musicIcon = document.getElementById('music-icon');
+        let isPlaying = false;
+
+        // Open Invitation Action
+        function openInvitation() {
+            const cover = document.getElementById('cover');
+            const mainContent = document.getElementById('main-content');
+            
+            // Slide Cover Up
+            cover.style.transform = 'translateY(-100%)';
+            mainContent.classList.remove('opacity-0');
+            musicBtn.classList.remove('hidden');
+
+            // Play Music
+            playMusic();
+
+            // Refresh AOS
+            setTimeout(() => {
+                AOS.refresh();
+            }, 500);
+        }
+
+        // Toggle Music Play / Pause
+        function toggleMusic() {
+            if (isPlaying) {
+                bgMusic.pause();
+                musicIcon.classList.remove('fa-spin', 'fa-music');
+                musicIcon.classList.add('fa-pause');
+            } else {
+                bgMusic.play();
+                musicIcon.classList.add('fa-spin', 'fa-music');
+                musicIcon.classList.remove('fa-pause');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function playMusic() {
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                musicIcon.classList.add('fa-spin');
+            }).catch(e => {
+                console.log("Autoplay blocked by browser policy");
+            });
+        }
+
+        // Copy Rekening Number to Clipboard
+        function copyToClipboard(text) {
+            const tempInput = document.createElement("input");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            // Show Toast Alert
+            const toast = document.getElementById('toast');
+            toast.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
+            toast.classList.add('opacity-100', 'translate-y-0');
+
+            setTimeout(() => {
+                toast.classList.remove('opacity-100', 'translate-y-0');
+                toast.classList.add('opacity-0', 'pointer-events-none', 'translate-y-[-10px]');
+            }, 2500);
+        }
+
+        // Add Wish Interactive Function
+        function addWish(event) {
+            event.preventDefault();
+            const name = document.getElementById('wish-name').value;
+            const message = document.getElementById('wish-message').value;
+            const container = document.getElementById('wishes-container');
+
+            const wishCard = document.createElement('div');
+            wishCard.className = 'bg-earth-50 p-4 rounded-xl border border-earth-200 opacity-0 transform translate-y-2 transition-all duration-500';
+            wishCard.innerHTML = `
+                <h4 class="font-bold text-xs text-earth-600">${escapeHtml(name)}</h4>
+                <p class="text-xs text-earth-500 mt-1">${escapeHtml(message)}</p>
+                <span class="text-[10px] text-earth-400 mt-2 block">Baru saja</span>
+            `;
+
+            container.prepend(wishCard);
+            
+            setTimeout(() => {
+                wishCard.classList.remove('opacity-0', 'translate-y-2');
+            }, 50);
+
+            // Reset Form
+            document.getElementById('wishes-form').reset();
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>
