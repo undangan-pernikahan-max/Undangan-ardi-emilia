@@ -121,7 +121,7 @@
 
             <!-- Open Button -->
             <div class="pb-10 w-full" data-aos="fade-up" data-aos-delay="400">
-                <p class="text-xs text-[#fff7eb] mb-3 drop-shadow-md">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+                <p class="text-xs text-[#fff7eb] mb-3 drop-shadow-md">Kepada Yth.<br><span id="guest-name" class="font-semibold text-sm">Bapak/Ibu/Saudara/i</span></p>
                 <button onclick="openInvitation()" class="w-full py-3.5 px-6 rounded-full bg-earth-500 text-earth-50 font-medium tracking-wide shadow-md hover:bg-earth-600 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2">
                     <i class="fas fa-envelope-open"></i>
                     Buka Undangan
@@ -346,6 +346,13 @@
     </div>
 
     <script>
+        // Tampilkan nama tamu dari link undangan, contoh: ?to=Bapak%20Andi
+        const guestParams = new URLSearchParams(window.location.search);
+        const guestName = guestParams.get('to');
+        if (guestName && guestName.trim()) {
+            document.getElementById('guest-name').textContent = guestName.trim();
+        }
+
         // Initialize AOS animation
         AOS.init({
             duration: 800,
